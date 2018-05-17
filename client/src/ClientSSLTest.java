@@ -6,8 +6,8 @@ import java.net.Socket;
 
 public class ClientSSLTest {
 
-    static String keystorePath = "client_ks.jks";
-    static String trustKeystorePath = "serverTrust_ks.jks";
+    static String keystorePath = "client-keystore.ks";
+    static String trustKeystorePath = "client-truststore.ks";
     static String keystorePassword = "client";
 
     public static void main(String args[]) throws Exception {
@@ -15,9 +15,11 @@ public class ClientSSLTest {
 
 
         System.setProperty("javax.net.ssl.keyStore", keystorePath);
-        System.setProperty("javax.net.ssl.keyStorePassword", keystorePassword);
+        System.setProperty("javax.net.ssl.keyStorePassword", "123456");
+        //System.setProperty("javax.net.ssl.keyStorePassword", keystorePassword);
         System.setProperty("javax.net.ssl.trustStore", trustKeystorePath);
-        System.setProperty("javax.net.ssl.trustStorePassword", keystorePassword);
+        //System.setProperty("javax.net.ssl.trustStorePassword", keystorePassword);
+        System.setProperty("javax.net.ssl.trustStorePassword", "123456");
 
         SocketFactory factory = SSLSocketFactory.getDefault();
         Socket sslsocket = factory.createSocket("127.0.0.1", 11111);

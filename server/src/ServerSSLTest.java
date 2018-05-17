@@ -7,19 +7,21 @@ import java.net.Socket;
 import java.security.KeyStore;
 
 public class ServerSSLTest {
-    static String keystorePath = "server_ks.jks";
+    static String keystorePath = "server-keystore.ks";
     //static String keystorePath = "server-keystore.jks";
-    static String trustKeystorePath = "clientTrust_ks.jks";
+    static String trustKeystorePath = "server-truststore.ks";
     static String keystorePassword = "server";
 
     public static void main(String args[]) throws Exception {
-        //System.setProperty("javax.net.debug", "ssl,handshake");
+        System.setProperty("javax.net.debug", "ssl,handshake");
 
         System.setProperty("javax.net.ssl.keyStore", keystorePath);
-        //System.setProperty("javax.net.ssl.keyStorePassword", "123456");
-        System.setProperty("javax.net.ssl.keyStorePassword", keystorePassword);
+        System.setProperty("javax.net.ssl.keyStorePassword", "123456");
+        //System.setProperty("javax.net.ssl.keyStorePassword", keystorePassword);
         System.setProperty("javax.net.ssl.trustStore", trustKeystorePath);
-        System.setProperty("javax.net.ssl.trustStorePassword", keystorePassword);
+        //System.setProperty("javax.net.ssl.trustStorePassword", keystorePassword);
+        System.setProperty("javax.net.ssl.trustStorePassword", "123456");
+
 
         ServerSocketFactory factory = SSLServerSocketFactory.getDefault();
         SSLServerSocket serverSocket = (SSLServerSocket) factory.createServerSocket(11111);
